@@ -3,20 +3,32 @@ const pep = require('apep');
 const pep_md = require('../index');
 const assert = require('assert');
 
+const listRe = (middle) =>
+    new RegExp('^(1\. ' + middle + '\n)*$');;
+
+const times = (x, f) => {
+    for (var i = 0; i < x; ++i)
+        f();
+};
+
+const assertIsList = (expected, g) => {
+    const found = g.run();
+    assert.ok(found.match(listRe(expected)), found);
+};
+
 describe('manyList', function () {
-    it('Should put single generator into list.', () => {
-        assert.deepStrictEqual(
-            "1. a\n",
-            pep_md.orderedList('a').run());
-        
-        assert.deepStrictEqual(
-            "1. abc\n",
-            pep_md.manyOrderedList(['a', 'b', 'c']).run());
+    it('Should put single value generator into lists.', () => {
+        times(20, () => {
+            assertIsList('a',
+                pep_md.orderedList('a'));
+
+        });
     });
 
-    it('Should put result of each generator into list.', () => {
-        assert.deepStrictEqual(
-            "1. a\n1. bc\n1. d\n",
-            pep_md.orderedList('a', ['b', 'c'], 'd').run());
+    it('Should put mult value generators into lists.', () => {
+        times(20, () => {
+            assertIsList('abc',
+                pep_md.manyOrderedList(['a', 'b', 'c']));
+        });
     });
 });

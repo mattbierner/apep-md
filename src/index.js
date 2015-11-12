@@ -40,6 +40,9 @@ const list = (start) => {
 };
 
 /**
+    Put the result of each generator into a list.
+
+    @param ...generators One or more generators.
 */
 export const orderedList = list(pep.str('1. '));
 export const unorderedList = list(pep.str('* '));
@@ -51,11 +54,19 @@ const manyList = (many, start) => {
 };
 
 /**
+    Run a generator zero or more times, putting results into a list.
+
+    @param g Generator.
+    @param prob See `pep.many`.
 */
 export const manyOrderedList = manyList(pep.many, pep.str('1. '));
 export const manyUnorderedList = manyList(pep.many, pep.str('* '));
 
 /**
+    Run a generator one or more times, putting results into a list.
+
+    @param g Generator.
+    @param prob See `pep.many`.
 */
 export const many1OrderedList = manyList(pep.many1, pep.str('1. '));
 export const many1UnorderedList = manyList(pep.many1, pep.str('* '));

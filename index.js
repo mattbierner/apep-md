@@ -45,6 +45,9 @@ var list = function list(start) {
 };
 
 /**
+    Put the result of each generator into a list.
+
+    @param ...generators One or more generators.
 */
 var orderedList = exports.orderedList = list(pep.str('1. '));
 var unorderedList = exports.unorderedList = list(pep.str('* '));
@@ -59,11 +62,19 @@ var manyList = function manyList(many, start) {
 };
 
 /**
+    Run a generator zero or more times, putting results into a list.
+
+    @param g Generator.
+    @param prob See `pep.many`.
 */
 var manyOrderedList = exports.manyOrderedList = manyList(pep.many, pep.str('1. '));
 var manyUnorderedList = exports.manyUnorderedList = manyList(pep.many, pep.str('* '));
 
 /**
+    Run a generator one or more times, putting results into a list.
+
+    @param g Generator.
+    @param prob See `pep.many`.
 */
 var many1OrderedList = exports.many1OrderedList = manyList(pep.many1, pep.str('1. '));
 var many1UnorderedList = exports.many1UnorderedList = manyList(pep.many1, pep.str('* '));
