@@ -51,7 +51,7 @@ var unorderedList = exports.unorderedList = list(pep.str('* '));
 
 var manyList = function manyList(many, start) {
     var makeList = function makeList(x) {
-        return pep.seq(start, pep.list(x), lineBreak);
+        return pep.seq(start, pep.lit(x), lineBreak);
     };
     return function (g, prob) {
         return many(pep.join(g)).chain(makeList);

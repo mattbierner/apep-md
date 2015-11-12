@@ -45,7 +45,7 @@ export const orderedList = list(pep.str('1. '));
 export const unorderedList = list(pep.str('* '));
  
 const manyList = (many, start) => {
-    const makeList = x => pep.seq(start, pep.list(x), lineBreak);
+    const makeList = x => pep.seq(start, pep.lit(x), lineBreak);
     return (g, prob) =>
         many(pep.join(g)).chain(makeList);
 };
