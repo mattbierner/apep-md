@@ -1,6 +1,6 @@
 {
     "name": "apep-md",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "Apep markdown generators.",
     "author": "Matt Bierner",
     "license": "MIT",
@@ -18,7 +18,7 @@
    
     "dependencies": {
         "apep": ">=1.2.0",
-        "apep-std-sep": "^0.0.0"
+        "apep-std-sep": "^0.0.2"
     },
     "devDependencies": {
         "babel-preset-es2015": "^6.1.0",
