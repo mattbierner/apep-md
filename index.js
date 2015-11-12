@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 var pep = require('apep');
 var pep_sep = require('apep-std-sep');
 
+var lineBreak = pep.str('\n');
+
 /**
     Italicize the result of a generator.
 */
@@ -24,15 +26,21 @@ var strike = exports.strike = pep_sep.between('~~', '~~');
 /**
     Output each generator as its own block section.
 */
-var paragraphs = exports.paragraphs = pep_sep.sepBy.bind(null, '\n\n');
+var paragraphs = exports.paragraphs = pep_sep.sepBy.bind(null, pep.str('\n\n'));
+
+/**
+    Output each generator as its own sentence.
+*/
+var sentences = exports.sentences = pep_sep.sepBy.bind(null, pep.str(' '));
 
 var list = function list(start) {
+    var sepInner = pep.seq(lineBreak, start);
     return function () {
         for (var _len = arguments.length, generators = Array(_len), _key = 0; _key < _len; _key++) {
             generators[_key] = arguments[_key];
         }
 
-        return pep.seq(start, pep_sep.sepBy.apply(pep_sep, [start].concat(generators)));
+        return pep.seq(start, pep_sep.sepBy.apply(pep_sep, [sepInner].concat(generators)), lineBreak);
     };
 };
 
@@ -43,7 +51,7 @@ var unorderedList = exports.unorderedList = list(pep.str('* '));
 
 var manyList = function manyList(many, start) {
     var makeList = function makeList(x) {
-        return pep.seq(start, pep.list(x));
+        return pep.seq(start, pep.list(x), lineBreak);
     };
     return function (g, prob) {
         return many(pep.join(g)).chain(makeList);
