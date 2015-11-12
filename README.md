@@ -6,7 +6,7 @@ Simple helpers for generating markdown with [Apep Javascript text generation lib
 
 ```sh
 $ npm install apep-md
-``
+```
 
 
 
