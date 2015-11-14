@@ -5,6 +5,16 @@ const pep_sep = require('apep-std-sep');
 const lineBreak = pep.str('\n');
 
 /**
+    Headers
+*/
+export const h1 = pep_sep.between('# ', lineBreak);
+export const h2 = pep_sep.between('## ', lineBreak);
+export const h3 = pep_sep.between('### ', lineBreak);
+export const h4 = pep_sep.between('#### ', lineBreak);
+export const h5 = pep_sep.between('##### ', lineBreak);
+export const h6 = pep_sep.between('###### ', lineBreak);
+
+/**
     Italicize the result of a generator.
 */
 export const italic = pep_sep.between('*', '*');
@@ -18,6 +28,24 @@ export const bold = pep_sep.between('**', '**');
     Strike through the result of a generator.
 */
 export const strike = pep_sep.between('~~', '~~');
+
+/**
+    Direct link
+*/
+export const link = (text, link) =>
+    pep.seq('[', text, '](', link, ')'); 
+
+/**
+    Link to a definition.
+*/
+export const reference = (text, id) =>
+    pep.seq('[', text, '][', id, ']'); 
+
+/**
+    Definition of a link
+*/
+export const linkDefinition = (id, def) =>
+    pep.seq('[', id, ']: ', def); 
 
 /**
     Output each generator as its own block section.

@@ -9,6 +9,16 @@ var pep_sep = require('apep-std-sep');
 var lineBreak = pep.str('\n');
 
 /**
+    Headers
+*/
+var h1 = exports.h1 = pep_sep.between('# ', lineBreak);
+var h2 = exports.h2 = pep_sep.between('## ', lineBreak);
+var h3 = exports.h3 = pep_sep.between('### ', lineBreak);
+var h4 = exports.h4 = pep_sep.between('#### ', lineBreak);
+var h5 = exports.h5 = pep_sep.between('##### ', lineBreak);
+var h6 = exports.h6 = pep_sep.between('###### ', lineBreak);
+
+/**
     Italicize the result of a generator.
 */
 var italic = exports.italic = pep_sep.between('*', '*');
@@ -22,6 +32,27 @@ var bold = exports.bold = pep_sep.between('**', '**');
     Strike through the result of a generator.
 */
 var strike = exports.strike = pep_sep.between('~~', '~~');
+
+/**
+    Direct link
+*/
+var link = exports.link = function link(text, _link) {
+    return pep.seq('[', text, '](', _link, ')');
+};
+
+/**
+    Link to a definition.
+*/
+var reference = exports.reference = function reference(text, id) {
+    return pep.seq('[', text, '][', id, ']');
+};
+
+/**
+    Definition of a link
+*/
+var linkDefinition = exports.linkDefinition = function linkDefinition(id, def) {
+    return pep.seq('[', id, ']: ', def);
+};
 
 /**
     Output each generator as its own block section.
