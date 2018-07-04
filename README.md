@@ -8,7 +8,7 @@ Simple helpers for generating markdown with [Apep Javascript text generation lib
 $ npm install apep-md
 ```
 
-## Headers
+## Headers and Context
     var pep = require("apep");
     var myText = "My Text";
     var lineBreak = pep.str("\n");
@@ -20,12 +20,13 @@ $ npm install apep-md
     var headingFour = pep.h2(myText) === "#### " + myText + lineBreak;
     var headingFive = pep.h2(myText) === "##### " + myText + lineBreak;
     var headingSix = pep.h2(myText) === "###### " + myText + lineBreak;
-
+    
+## Styles
     //styles
     var italicText = pep.italic(myText) === "*" + myText + "*";
     var boldText = pep.bold(myText) === "**" + myText + "**";
     var strikeThru = pep.strike(myText) === "~~" + myText + "~~";
 
 
-
+## Where To Get Apep
 [apep]: https://github.com/mattbierner/apep
